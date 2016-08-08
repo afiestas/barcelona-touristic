@@ -11,16 +11,15 @@ data$DATE <- as.Date(data$DATE_STR)
 data$EXPEDIENT_NUM <- sapply(data$EXPEDIENT, function(x) strsplit(x, '-')[[1]][3])
 head(data)
 
-ggplot(data, aes(x = BARRI)) +
-    geom_bar(stat = 'count') +
-    theme_few() +
-    theme(axis.text.x = element_text(angle = 80, hjust = 1)) +
-    labs(y = 'Touristic Houses')
-
 #Create a df for neighborhoods, atm with just the amount of touristic hosues
 neighborhoods = as.data.frame(table(data$BARRI))
 colnames(neighborhoods) <- c('NAME', 'TOURISTIC_HOUSES')
 
+#plot only the busiest neighborhoods
+ggplot(neighborhoods, aes(reorder(NAME, -TOURISTIC_HOUSES), y = TOURISTIC_HOUSES)) +
+  geom_bar(stat = 'identity') + theme_few() +
+  theme(axis.text.x = element_text(angle = 80, hjust = 1)) +
+  labs(y = 'Touristic Houses')
 #Filter out neightborhoods without many touristic houses
 threshold = 5
 mostHouses = max(neighborhoods$TOURISTIC_HOUSES)
