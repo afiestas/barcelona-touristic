@@ -19,7 +19,7 @@ colnames(neighborhoods) <- c('NAME', 'TOURISTIC_HOUSES')
 ggplot(neighborhoods, aes(reorder(NAME, -TOURISTIC_HOUSES), y = TOURISTIC_HOUSES)) +
   geom_bar(stat = 'identity') + theme_few() +
   theme(axis.text.x = element_text(angle = 80, hjust = 1)) +
-  labs(y = 'Touristic Houses')
+  labs(y = 'Touristic Houses', x = 'Neighborhoods')
 
 #Filter out neightborhoods without many touristic houses
 threshold = 5
@@ -30,4 +30,6 @@ busiestHoods = filter(neighborhoods, TOURISTIC_HOUSES * 100 / mostHouses > thres
 ggplot(busiestHoods, aes(reorder(NAME, -TOURISTIC_HOUSES), y = TOURISTIC_HOUSES)) +
   geom_bar(stat = 'identity') + theme_few() +
   theme(axis.text.x = element_text(angle = 80, hjust = 1)) +
-  labs(y = 'Touristic Houses')
+  labs(y = 'Touristic Houses', x = 'Neighborhoods')
+
+
