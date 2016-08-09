@@ -1,5 +1,6 @@
 library('ggplot2') # visualization
 library('ggthemes') # visualization
+library('dplyr')
 
 #Read original data as Latin1, encode it to UTF-8
 data = read.csv2('hut_comunicacio.csv', stringsAsFactors = F, encoding = 'UTF-8', fileEncoding = 'ISO8859-1')
