@@ -1,6 +1,8 @@
 library('ggplot2') # visualization
 library('ggthemes') # visualization
 library('dplyr')
+library('rjson')
+library('plyr')
 
 #Read original data as Latin1, encode it to UTF-8
 data = read.csv2('hut_comunicacio.csv', stringsAsFactors = F, encoding = 'UTF-8', fileEncoding = 'ISO8859-1')
@@ -34,3 +36,18 @@ ggplot(busiestHoods, aes(reorder(NAME, -TOURISTIC_HOUSES), y = TOURISTIC_HOUSES)
   labs(y = 'Touristic Houses', x = 'Neighborhoods')
 
 
+dades <- fromJSON(file='barcelona-hotels.json')
+dades <- dades$extraccio$objRegistral
+
+dades <- Filter(function(x) x$dades_generals$estat == 'ALTA', dades)
+
+extractHotel <- function (x) {
+  cp = x$dades_generals$adreca$cp
+  retols = x$dades_generals$retol
+  places = Filter(function(y) y$id == "20", x$places$placa)[[1]]$num_places
+  if (is.null(places))
+      places = NA
+  data.frame(name = retols, cp = cp, places = places)
+}
+
+l = ldply(dades, extractHotel)
