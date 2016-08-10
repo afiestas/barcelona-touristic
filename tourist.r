@@ -35,7 +35,6 @@ ggplot(busiestHoods, aes(reorder(NAME, -touristic.houses), y = touristic.houses)
   theme(axis.text.x = element_text(angle = 80, hjust = 1)) +
   labs(y = 'Touristic Houses', x = 'Neighborhoods')
 
-
 dades <- fromJSON(file='barcelona-hotels.json')
 dades <- dades$extraccio$objRegistral
 
