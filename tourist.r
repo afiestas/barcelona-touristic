@@ -17,21 +17,21 @@ head(data)
 
 #Create a df for neighborhoods, atm with just the amount of touristic hosues
 neighborhoods = as.data.frame(table(data$BARRI))
-colnames(neighborhoods) <- c('NAME', 'TOURISTIC_HOUSES')
+colnames(neighborhoods) <- c('name', 'touristic.houses')
 
 #plot only the busiest neighborhoods
-ggplot(neighborhoods, aes(reorder(NAME, -TOURISTIC_HOUSES), y = TOURISTIC_HOUSES)) +
+ggplot(neighborhoods, aes(reorder(NAME, -touristic.houses), y = touristic.houses)) +
   geom_bar(stat = 'identity') + theme_few() +
   theme(axis.text.x = element_text(angle = 80, hjust = 1)) +
   labs(y = 'Touristic Houses', x = 'Neighborhoods')
 
 #Filter out neightborhoods without many touristic houses
 threshold = 5
-mostHouses = max(neighborhoods$TOURISTIC_HOUSES)
-busiestHoods = filter(neighborhoods, TOURISTIC_HOUSES * 100 / mostHouses > threshold)
+mostHouses = max(neighborhoods$touristic.houses)
+busiestHoods = filter(neighborhoods, touristic.houses * 100 / mostHouses > threshold)
 
 #plot only the busiest neighborhoods
-ggplot(busiestHoods, aes(reorder(NAME, -TOURISTIC_HOUSES), y = TOURISTIC_HOUSES)) +
+ggplot(busiestHoods, aes(reorder(NAME, -touristic.houses), y = touristic.houses)) +
   geom_bar(stat = 'identity') + theme_few() +
   theme(axis.text.x = element_text(angle = 80, hjust = 1)) +
   labs(y = 'Touristic Houses', x = 'Neighborhoods')
