@@ -45,10 +45,15 @@ extractHotel <- function (x) {
   cp = x$dades_generals$adreca$cp
   retols = x$dades_generals$retol
   street = str_trim(x$dades_generals$adreca$nom_via)
+  num = x$dades_generals$adreca$num
+  if (length(num) == 0) {
+    num = NA
+  }
+
   places = Filter(function(y) y$id == "20", x$places$placa)[[1]]$num_places
   if (is.null(places))
       places = NA
-  data.frame(name = retols, cp = cp, places = places)
+  data.frame(name = retols, cp = cp, places = places, street = street, num = num, stringsAsFactors = F)
 }
 
 l = ldply(dades, extractHotel)
