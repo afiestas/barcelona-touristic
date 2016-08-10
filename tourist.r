@@ -53,6 +53,9 @@ extractHotel <- function (x) {
 
 l = ldply(dades, extractHotel)
 
+#We are done with this df
+rm(dades)
+
 hoods = read.csv2('superficiedens2013.csv', stringsAsFactors = F, encoding = 'UTF-8', fileEncoding = 'ISO8859-1')
 hoods$Barris <-  gsub('\\d+\\. ', '', hoods$Barris, perl=T)
 hoods <- hoods[hoods$Barris != "", ]
