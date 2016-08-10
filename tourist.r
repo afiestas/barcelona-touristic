@@ -1,8 +1,8 @@
 library('ggplot2') # visualization
 library('ggthemes') # visualization
-library('dplyr')
+library('plyr') # ldply
+library('dplyr') #Filter
 library('rjson')
-library('plyr')
 library('Hmisc') #For nin operator
 
 #Read original data as Latin1, encode it to UTF-8
