@@ -3,6 +3,7 @@ library('ggthemes') # visualization
 library('dplyr')
 library('rjson')
 library('plyr')
+library('Hmisc') #For nin operator
 
 #Read original data as Latin1, encode it to UTF-8
 data = read.csv2('hut_comunicacio.csv', stringsAsFactors = F, encoding = 'UTF-8', fileEncoding = 'ISO8859-1')
@@ -55,3 +56,13 @@ l = ldply(dades, extractHotel)
 hoods = read.csv2('superficiedens2013.csv', stringsAsFactors = F, encoding = 'UTF-8', fileEncoding = 'ISO8859-1')
 hoods$Barris <-  gsub('\\d+\\. ', '', hoods$Barris, perl=T)
 hoods <- hoods[hoods$Barris != "", ]
+
+#Lets check if we are missing any neighborhoods in our neighborhood df
+hoods[hoods$Barris %nin% neighborhoods$NAME , ]
+
+#We are missing 8 neighborhoods wich do not have touristic houses
+#1 of them just have different names
+hoods[hoods$Barris == 'el Poble Sec - AEI Parc Montjuïc (1)', ] <- 'el Poble Sec'
+
+#Translate collumn names from Catalan to English
+colnames(hoods) <- c('Dte', 'NAME', 'POPULATION', 'AREA', 'DENSITY', 'DENSITAT_NETA')
