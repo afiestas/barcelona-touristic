@@ -13,7 +13,6 @@ data$DATE_STR <- sapply(data$EXPEDIENT, function(x) paste('01-', substr(x, 1, nc
 data$DATE <- as.Date(data$DATE_STR)
 
 data$EXPEDIENT_NUM <- sapply(data$EXPEDIENT, function(x) strsplit(x, '-')[[1]][3])
-head(data)
 
 #Create a df for neighborhoods, atm with just the amount of touristic hosues
 neighborhoods = as.data.frame(table(data$BARRI))
