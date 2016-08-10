@@ -56,7 +56,20 @@ extractHotel <- function (x) {
   data.frame(name = retols, cp = cp, places = places, street = street, num = num, stringsAsFactors = F)
 }
 
-l = ldply(dades, extractHotel)
+hotels = ldply(dades, extractHotel)
+
+#These 4 hotels have the street number in the street name
+hotels[hotels$street == 'Aragó, 569 bis-579' ,]$num <- '579'
+hotels[hotels$street == 'Aragó, 569 bis-579' ,]$street <- 'Aragó'
+
+hotels[hotels$street == 'Aragó, 323-325' ,]$num <- '323-325'
+hotels[hotels$street == 'Aragó, 323-325' ,]$street <- 'Aragó'
+
+hotels[hotels$street == 'Pujades, 120-122' ,]$num <- '120-122'
+hotels[hotels$street == 'Pujades, 120-122' ,]$street <- 'Pujades'
+
+hotels[hotels$street == 'Mallorca, 216' ,]$num <- '216'
+hotels[hotels$street == 'Mallorca, 216' ,]$street <- 'Mallorca'
 
 #We are done with this df
 rm(dades)
