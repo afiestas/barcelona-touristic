@@ -4,6 +4,7 @@ library('plyr') # ldply
 library('dplyr') #Filter
 library('rjson')
 library('Hmisc') #For nin operator
+library(stringr)
 
 #Read original data as Latin1, encode it to UTF-8
 data = read.csv2('hut_comunicacio.csv', stringsAsFactors = F, encoding = 'UTF-8', fileEncoding = 'ISO8859-1')
@@ -43,6 +44,7 @@ dades <- Filter(function(x) x$dades_generals$estat == 'ALTA', dades)
 extractHotel <- function (x) {
   cp = x$dades_generals$adreca$cp
   retols = x$dades_generals$retol
+  street = str_trim(x$dades_generals$adreca$nom_via)
   places = Filter(function(y) y$id == "20", x$places$placa)[[1]]$num_places
   if (is.null(places))
       places = NA
