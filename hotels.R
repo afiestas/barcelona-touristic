@@ -63,5 +63,7 @@ getBarcelonaHotels <- function() {
   hotels[hotels$street == "Torrent de l' Olla" ,]$street <- "Torrent de l'Olla"
   hotels[hotels$street == "Litoral" ,]$street <- "Avda Litoral"
 
+  hotels <- hotels[hotels$street != "Franca-carrer K" ,]
+
   return(hotels)
 }
