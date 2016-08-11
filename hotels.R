@@ -55,7 +55,7 @@ getBarcelonaHotels <- function() {
   hotels[hotels$street == "de l'Àngel" ,]$street <- "Pl. de l'Àngel"
   hotels[hotels$street == "Dalt" ,]$street <- "Trav. de Dalt"
   hotels[hotels$street == "Garcia Faria" ,]$street <- "Pg. Garcia Faria"
-  hotels[hotels$street == "Taulat" ,]$street <- "Pg. del Taulat"
+  hotels[hotels$street == "Taulat" ,]$street <- "Carrer del Taulat"
   hotels[hotels$street == "Reial" ,]$street <- "Pl Reial"
   hotels[hotels$street == "Eduard Maristany" ,]$street <- "Av Eduard Maristany"
   hotels[hotels$street == "Rosa dels Vents" ,]$street <- "Pl Rosa dels Vents"
