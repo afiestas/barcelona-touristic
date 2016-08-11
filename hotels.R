@@ -55,13 +55,15 @@ getBarcelonaHotels <- function() {
   hotels[hotels$street == "de l'Àngel" ,]$street <- "Pl. de l'Àngel"
   hotels[hotels$street == "Dalt" ,]$street <- "Trav. de Dalt"
   hotels[hotels$street == "Garcia Faria" ,]$street <- "Pg. Garcia Faria"
-  hotels[hotels$street == "Taulat" ,]$street <- "Carrer del Taulat"
   hotels[hotels$street == "Reial" ,]$street <- "Pl Reial"
   hotels[hotels$street == "Eduard Maristany" ,]$street <- "Av Eduard Maristany"
   hotels[hotels$street == "Rosa dels Vents" ,]$street <- "Pl Rosa dels Vents"
   hotels[hotels$street == "Sancho d'Àvila" ,]$street <- "Sancho de ávila"
   hotels[hotels$street == "Torrent de l' Olla" ,]$street <- "Torrent de l'Olla"
   hotels[hotels$street == "Litoral" ,]$street <- "Avda Litoral"
+
+  hotels[hotels$street == "Taulat" & hotels$num == 30 ,]$street <- "Carrer del Taulat"
+  hotels[hotels$street == "Taulat", ]$street <- "Pg. del Taulat"
 
   hotels <- hotels[hotels$street != "Franca-carrer K" ,]
 
