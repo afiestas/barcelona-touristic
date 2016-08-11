@@ -2,31 +2,41 @@
 #http://dadesobertes.gencat.cat/en/cercador/detall-cataleg/?id=230
 #and filtered so we only get Barcelona hotels instead of all Catalonia
 
-library(rjson)
 library(dplyr)
+library(stringr)
+library(jsonlite)
 
 extractHotel <- function (x) {
-  cp = x$dades_generals$adreca$cp
-  retols = x$dades_generals$retol
-  street = str_trim(x$dades_generals$adreca$nom_via)
-  num = x$dades_generals$adreca$num
+  cp = x$dades_generals.adreca.cp
+  retols = x.dades_generals.retol
+  street = str_trim(x.dades_generals.adreca.nom_via)
+  num = x.dades_generals.adreca.num
   if (length(num) == 0) {
     num = NA
   }
   
-  places = Filter(function(y) y$id == "20", x$places$placa)[[1]]$num_places
+  places = Filter(function(y) y$id == "20", x.places.placa)
   if (is.null(places))
     places = NA
   data.frame(name = retols, cp = cp, places = places, street = street, num = num, stringsAsFactors = F)
 }
 
 getBarcelonaHotels <- function() {
-  dades <- fromJSON(file='barcelona-hotels.json')
-  dades <- dades$extraccio$objRegistral
+  hotels <- fromJSON(txt='barcelona-hotels.json', flatten = T)
   
-  dades <- Filter(function(x) x$dades_generals$estat == 'ALTA', dades)
+  hotels <- hotels$extraccio$objRegistral
   
-  hotels = ldply(dades, extractHotel)
+  #Only the hotels that are actually on service
+  hotels <- hotels[hotels$dades_generals.estat == 'ALTA', ]
+
+  #Select the total available places
+  hotels$places <- lapply(hotels$places.placa, function(x) x[x$id == '20' ,]$num_places)
+  #Filtering all columns we do not want
+  hotels <- select(hotels, dades_generals.retol, dades_generals.adreca.nom_via, dades_generals.adreca.num, places)
+  #Put some names that make sense
+  colnames(hotels) <- c('name', 'street', 'num', 'places' )
+
+  hotels$street <- str_trim(hotels$street)
   
   #These 4 hotels have the street number in the street name
   hotels[hotels$street == 'Aragó, 569 bis-579' ,]$num <- '579'
@@ -62,7 +72,7 @@ getBarcelonaHotels <- function() {
   hotels[hotels$street == "Torrent de l' Olla" ,]$street <- "Torrent de l'Olla"
   hotels[hotels$street == "Litoral" ,]$street <- "Avda Litoral"
 
-  hotels[hotels$street == "Taulat" & hotels$num == 30 ,]$street <- "Carrer del Taulat"
+  hotels[hotels$street == "Taulat" & hotels$num == '30' ,]$street <- "Carrer del Taulat"
   hotels[hotels$street == "Taulat", ]$street <- "Pg. del Taulat"
 
   hotels <- hotels[hotels$street != "Franca-carrer K" ,]
