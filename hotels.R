@@ -40,6 +40,25 @@ getBarcelonaHotels <- function() {
   
   hotels[hotels$street == 'Mallorca, 216' ,]$num <- '216'
   hotels[hotels$street == 'Mallorca, 216' ,]$street <- 'Mallorca'
-  
+
+  hotels[hotels$street == "Països Catalans" ,]$num <- "1"
+  hotels[hotels$street == "Països Catalans" ,]$street <- "Pl dels Països Catalans:1"
+
+  hotels[hotels$street == "Amílcar" ,]$num <- '118'
+  hotels[hotels$street == "Pius XII" ,]$num <- '1'
+  hotels[hotels$street == "Doctor Trueta" ,]$num <- '160'
+  hotels[hotels$street == "Moll de Barcelona" ,]$num <- '1'
+
+  hotels[hotels$street == "Marques d'Argentera" ,]$street <- "Marquès de l'Argentera"
+  hotels[hotels$street == "Vallvidrera-Tibidabo" ,]$street <- "ctra vallvidrera tibidabo"
+  hotels[hotels$street == "Junta del Comerç" ,]$street <- "Junta de Comerç"
+  hotels[hotels$street == "de l'Àngel" ,]$street <- "Pl. de l'Àngel"
+  hotels[hotels$street == "Dalt" ,]$street <- "Trav. de Dalt"
+  hotels[hotels$street == "Garcia Faria" ,]$street <- "Pg. Garcia Faria"
+  hotels[hotels$street == "Taulat" ,]$street <- "Pg. del Taulat"
+  hotels[hotels$street == "Reial" ,]$street <- "Pl Reial"
+  hotels[hotels$street == "Eduard Maristany" ,]$street <- "Av Eduard Maristany"
+  hotels[hotels$street == "Rosa dels Vents" ,]$street <- "Pl Rosa dels Vents"
+
   return(hotels)
 }
