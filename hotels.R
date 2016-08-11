@@ -59,6 +59,9 @@ getBarcelonaHotels <- function() {
   hotels[hotels$street == "Reial" ,]$street <- "Pl Reial"
   hotels[hotels$street == "Eduard Maristany" ,]$street <- "Av Eduard Maristany"
   hotels[hotels$street == "Rosa dels Vents" ,]$street <- "Pl Rosa dels Vents"
+  hotels[hotels$street == "Sancho d'Àvila" ,]$street <- "Sancho de ávila"
+  hotels[hotels$street == "Torrent de l' Olla" ,]$street <- "Torrent de l'Olla"
+  hotels[hotels$street == "Litoral" ,]$street <- "Avda Litoral"
 
   return(hotels)
 }
