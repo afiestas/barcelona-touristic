@@ -37,7 +37,7 @@ getBarcelonaHotels <- function() {
   hotels[hotels$street == 'Mallorca, 216' ,]$street <- 'Mallorca'
 
   hotels[hotels$street == "Països Catalans" ,]$num <- "1"
-  hotels[hotels$street == "Països Catalans" ,]$street <- "Pl dels Països Catalans:1"
+  hotels[hotels$street == "Països Catalans" ,]$street <- "Pl dels Països Catalans"
 
   hotels[hotels$street == "Amílcar" ,]$num <- '118'
   hotels[hotels$street == "Pius XII" ,]$num <- '1'
