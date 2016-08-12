@@ -1,4 +1,5 @@
 #Reads the touristic houses from 
+library(stringr)
 
 #Read original data as Latin1, encode it to UTF-8
 data = read.csv2('hut_comunicacio.csv', stringsAsFactors = F, encoding = 'UTF-8', fileEncoding = 'ISO8859-1')
@@ -13,3 +14,4 @@ data$EXPEDIENT_NUM <- sapply(data$EXPEDIENT, function(x) strsplit(x, '-')[[1]][3
 neighborhoods = as.data.frame(table(data$BARRI), stringsAsFactors = F)
 colnames(neighborhoods) <- c('name', 'touristic.houses')
 
+neighborhoods$name <- str_to_title(neighborhoods$name)
