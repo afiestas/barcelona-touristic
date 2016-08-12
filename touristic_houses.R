@@ -4,7 +4,7 @@ library(stringr)
 
 getTouristicHouses <- function() {
   #Read original data as Latin1, encode it to UTF-8
-  data = read.csv2('hut_comunicacio.csv', stringsAsFactors = F, encoding = 'UTF-8', fileEncoding = 'ISO8859-1')
+  data = read.csv2('raw/hut_comunicacio.csv', stringsAsFactors = F, encoding = 'UTF-8', fileEncoding = 'ISO8859-1')
 
   #EXPEDIENT seems to be date + a number, get the date
   data$DATE_STR <- sapply(data$EXPEDIENT, function(x) paste('01-', substr(x, 1, nchar(x) -5), sep = ''))

@@ -7,7 +7,7 @@ library(stringr)
 library(jsonlite)
 
 getBarcelonaHotels <- function() {
-  hotels <- fromJSON(txt='barcelona-hotels.json', flatten = T)
+  hotels <- fromJSON(txt='curated/barcelona-hotels.json', flatten = T)
   
   hotels <- hotels$extraccio$objRegistral
   

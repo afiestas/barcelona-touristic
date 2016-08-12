@@ -1,7 +1,7 @@
 library(stringr)
 
 getBedsPerHood <- function() {
-  listing <- read.csv('listings.csv', stringsAsFactors = F)
+  listing <- read.csv('raw/airbin-listings.csv', stringsAsFactors = F)
 
   #there are 24 rows without beds, lets infer 23 of them using bedrooms
   listing[is.na(listing$beds) ,]$beds <- listing[is.na(listing$beds) ,]$bedrooms

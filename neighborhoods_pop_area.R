@@ -1,6 +1,6 @@
 
 getHoodAreaAndPop <- function() {
-  hoods = read.csv2('superficiedens2013.csv', stringsAsFactors = F, encoding = 'UTF-8', fileEncoding = 'ISO8859-1')
+  hoods = read.csv2('raw/superficiedens2013.csv', stringsAsFactors = F, encoding = 'UTF-8', fileEncoding = 'ISO8859-1')
 
   #Translate collumn names from Catalan to English
   colnames(hoods) <- c('Dte', 'name', 'population', 'area', 'density', 'net.density')
