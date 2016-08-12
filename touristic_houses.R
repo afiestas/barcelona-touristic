@@ -14,7 +14,7 @@ getTouristicHouses <- function() {
 
   #Create a df for neighborhoods, atm with just the amount of touristic hosues
   neighborhoods = as.data.frame(table(data$BARRI), stringsAsFactors = F)
-  colnames(neighborhoods) <- c('name', 'touristic.houses')
+  colnames(neighborhoods) <- c('name', 'houses')
 
   neighborhoods$name <- str_to_title(neighborhoods$name)
 
